@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "0 4 * * *"
 
-permissions: {}
+permissions: {}   # workflow default: deny-all
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -13,6 +13,9 @@ concurrency:
 
 jobs:
   build:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-24.04
     steps:
       - uses: jmertic/lfx-landscape-tools@1e618658f433f7ffd6320630fc528ad683ef9530 # 20260418
